@@ -18,11 +18,18 @@ services:
       timeout: 5s
       retries: 5
 
-  app:
+  web:
     build: .
-    container_name: docker-django-app
-#    command: bash -c "poetry run python manage.py compilemessages && poetry run python manage.py migrate && poetry run python manage.py collectstatic --noinput && poetry run python manage.py runserver 0.0.0.0:8000"
-    command: bash -c "poetry run python manage.py compilemessages && poetry run python manage.py migrate && poetry run python manage.py collectstatic --noinput && poetry run daphne -b 0.0.0.0 project.asgi:application"
+    image: docker-django-app
+    command:
+      - /bin/sh
+      - -c
+      - |
+        poetry run python manage.py compilemessages
+        poetry run python manage.py migrate
+        poetry run python manage.py collectstatic --noinput
+        poetry run python manage.py runserver 0.0.0.0:8000
+#        poetry run daphne -b 0.0.0.0 project.asgi:application
     volumes:
       - .:/code
     expose:
@@ -47,4 +54,4 @@ services:
       - ./static:/static
       - ./media:/media
     depends_on:
-      - app
+      - web

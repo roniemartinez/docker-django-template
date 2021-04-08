@@ -13,10 +13,10 @@ docker-compose up
 
 ## Scaling
 
-To scale up, add --scale app=N parameter. For example:
+To scale up, add --scale web=N parameter. For example:
 
 ```shell
-docker-compose up --scale app=3
+docker-compose up --scale web=3
 ```
 
 ## Add translations
@@ -31,9 +31,12 @@ poetry run python manage.py makemessages -l <language_code>
 Use the `Makefile` included for running different development tasks:
 
 1. `make install` - installs the packages needed for development.
-2. `make style` - runs `autoflake`, `isort`, `black` and `flake8` for fixing coding style. 
+2. `make style` or `make format` - runs `autoflake`, `isort`, `black` and `flake8` for fixing coding style. 
 3. `make type` - type checking using `mypy`.
 4. `make test` - run unit tests.
+5. `make migrations` - generate migration scripts, if applicable.
+6. `make migrate` - run migrations, if applicable.
+7. `make superuser` - create superuser.
 
 ## Author
 
