@@ -10,14 +10,16 @@ style:
 	poetry run black .
 	poetry run flake8 .
 
+.PHONY: format
+format: style
+
 .PHONY: type
 type:
-	poetry run mypy --ignore-missing-imports .
+	poetry run mypy .
 
 .PHONY: test
 test:
-	DJANGO_SECRET_KEY=test POSTGRES_DB=test POSTGRES_USER=test poetry run coverage run --source="sample" manage.py test -v 2
-	poetry run coverage html --omit="*/test*,*/apps.py"
+	docker-compose run web bash -c 'poetry run pytest'
 
 .PHONY: build
 build:
@@ -26,3 +28,19 @@ build:
 .PHONY: up
 up:
 	docker-compose up
+
+.PHONY: superuser
+superuser:
+	docker-compose run web bash -c "poetry run python manage.py createsuperuser"
+
+.PHONY: migrations
+migrations:
+	docker-compose run web bash -c "poetry run python manage.py makemigrations"
+
+.PHONY: migrate
+migrate:
+	docker-compose run web bash -c "poetry run python manage.py migrate"
+
+.PHONY: compilemessages
+compilemessages:
+	docker-compose run web bash -c "poetry run python manage.py compilemessages"

@@ -1,4 +1,4 @@
-FROM python:3.8.7-slim-buster
+FROM python:3.8.8-slim-buster
 LABEL maintainer="ronmarti18@gmail.com"
 
 RUN apt update && apt install -y build-essential gettext python3-dev
@@ -10,4 +10,4 @@ RUN mkdir /code
 WORKDIR /code
 COPY . /code/
 
-RUN poetry install --no-dev
+RUN poetry install
