@@ -140,3 +140,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# https://docs.djangoproject.com/en/3.2/releases/3.2/
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
