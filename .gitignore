@@ -140,5 +140,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Django
+static/*
+
+# Postgres
 data/
-static/

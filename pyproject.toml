@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "docker-django-template"
-version = "0.2.1"
+version = "0.2.2"
 description = "Template repository for a Docker+Django project"
 authors = ["Ronie Martinez <ronmarti18@gmail.com>"]
 license = "MIT"
