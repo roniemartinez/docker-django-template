@@ -10,3 +10,8 @@ async def index(request: WSGIRequest) -> HttpResponse:
     response = render(request, "sample/index.html")
     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, translation.get_language())
     return response
+
+
+async def cleanup(request: WSGIRequest) -> HttpResponse:
+    # do something
+    return HttpResponse()

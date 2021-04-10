@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   database:
-    image: postgres:13-alpine
+    image: library/postgres:13-alpine
     container_name: docker-django-database
     restart: always
     env_file:
@@ -44,7 +44,7 @@ services:
       - database
 
   nginx:
-    image: nginx:latest
+    image: library/nginx:latest
     container_name: docker-django-nginx
     ports:
       - 8080:8080
@@ -55,3 +55,17 @@ services:
       - ./media:/media
     depends_on:
       - web
+
+  cron:
+    build:
+      context: .
+      dockerfile: docker/cron.dockerfile
+    container_name: docker-django-cron
+    command: crond -f -d 8
+    volumes:
+      - "./cron/cron:/etc/crontabs/root:z"
+    restart: unless-stopped
+    depends_on:
+      - nginx
+    links:
+      - nginx
