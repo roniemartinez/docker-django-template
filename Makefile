@@ -19,7 +19,7 @@ type:
 
 .PHONY: test
 test:
-	docker-compose run web bash -c 'poetry run pytest'
+	docker-compose run --rm web bash -c 'poetry run pytest'
 
 .PHONY: build
 build:
@@ -31,16 +31,16 @@ up:
 
 .PHONY: superuser
 superuser:
-	docker-compose run web bash -c "poetry run python manage.py createsuperuser"
+	docker-compose run --rm web bash -c "poetry run python manage.py createsuperuser"
 
 .PHONY: migrations
 migrations:
-	docker-compose run web bash -c "poetry run python manage.py makemigrations"
+	docker-compose run --rm web bash -c "poetry run python manage.py makemigrations"
 
 .PHONY: migrate
 migrate:
-	docker-compose run web bash -c "poetry run python manage.py migrate"
+	docker-compose run --rm web bash -c "poetry run python manage.py migrate"
 
 .PHONY: compilemessages
 compilemessages:
-	docker-compose run web bash -c "poetry run python manage.py compilemessages"
+	docker-compose run --rm web bash -c "poetry run python manage.py compilemessages"
