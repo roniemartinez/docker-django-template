@@ -1,0 +1,15 @@
+{% extends "sample/base.html" %}
+{% load i18n %}
+
+{% block container %}
+    <div class="container-fluid">
+        <div class="row px-5" style="height: calc(100vh - 54px);">
+            <div class="col-lg-12 col-sm-12 justify-content-center align-self-center">
+                <h1>{{ error.value }} {{ error.phrase }}</h1>
+                <p>{{ error.description }}</p>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}

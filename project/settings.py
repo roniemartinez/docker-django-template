@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -143,3 +144,20 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # https://docs.djangoproject.com/en/3.2/releases/3.2/
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+LOGIN_REDIRECT_URL = reverse_lazy("sample:protected")
+LOGOUT_REDIRECT_URL = reverse_lazy("sample:login")
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "cache",
+    }
+}
+
+EMAIL_HOST = os.getenv("SMTP_HOST")
+EMAIL_PORT = os.getenv("SMTP_PORT", 587)
+EMAIL_HOST_USER = os.getenv("SMTP_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("SMTP_HOST_PASSWORD")
+EMAIL_USE_TLS = True
