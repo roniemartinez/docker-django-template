@@ -21,13 +21,13 @@ You can check this template in action using the URL [https://ddt.ron.sh/](https:
 If you don't have a DigitalOcean account yet, create one using my referral [link](https://m.do.co/c/5b9c0bd05e4e).
 
 1. Create a Domain and add an `A record` pointing to your Droplet.
-2. Inside your Droplet, create an SSL certificate
+2. Inside your Droplet, create an SSL certificate:
 
 ```shell
 certbot --nginx -d <domain>
 ```
 
-3. Update the nginx configuration (usually /etc/nginx/sites-available/default) and update the `location /` block just below the domain created by certbot (look for `server_name <domain>; # managed by Certbot`)
+3. Edit the nginx configuration (usually /etc/nginx/sites-available/default) and update the `location /` block just below the domain created by certbot (look for `server_name <domain>; # managed by Certbot`):
    
 ```
 	location / {
@@ -39,7 +39,12 @@ certbot --nginx -d <domain>
 	}
 ```
 
-4. Clone your project that was created using Docker+Django Template or you can create a non-git package (up to you)
+4. Clone your project that was created using Docker+Django Template or you can create a non-git package (up to you).
+5. Reload nginx:
+
+```shell
+service nginx reload
+```
 
 ## Build and run
 
@@ -48,7 +53,7 @@ Note: update the environment variables in `env` folder before running the follow
 ```shell
 cd <project-folder>
 docker-compose build
-docker-compose up  # or "docker-compose up -d" to run in detach mode
+docker-compose up  # or "docker-compose up -d" to run in detached mode
 ```
 
 ## Scaling
