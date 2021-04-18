@@ -1,1 +1,1 @@
-*	*	*	*	*	curl --silent http://nginx:8080/cleanup;
+*	*	*	*	*	curl --silent http://nginx:8080/cleanup/;

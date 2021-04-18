@@ -85,7 +85,7 @@ class VerifyAccountView(TemplateView):
 class CleanUpView(View):
     def get(self, request: WSGIRequest) -> HttpResponse:
         # do something
-        return HttpResponse()
+        return HttpResponse(status=HTTPStatus.NO_CONTENT)
 
 
 class HandleErrorView(TemplateView):
