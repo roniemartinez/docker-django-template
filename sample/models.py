@@ -16,9 +16,3 @@ class UserExtension(models.Model):
     verified = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-
-    def username(self) -> str:
-        return self.user.username
-
-    def __str__(self) -> str:
-        return self.user.username
