@@ -44,3 +44,7 @@ migrate:
 .PHONY: compilemessages
 compilemessages:
 	docker-compose run --rm web bash -c "poetry run python manage.py compilemessages"
+
+.PHONY: cachetable
+cachetable:
+	docker-compose run --rm web bash -c "poetry run python manage.py createcachetable"

@@ -27,9 +27,10 @@ services:
       - |
         poetry run python manage.py compilemessages
         poetry run python manage.py migrate
+        poetry run python manage.py createcachetable
         poetry run python manage.py collectstatic --noinput
-        poetry run python manage.py runserver 0.0.0.0:8000
-#        poetry run daphne -b 0.0.0.0 project.asgi:application
+        poetry run daphne -b 0.0.0.0 project.asgi:application
+#        poetry run python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     expose:
