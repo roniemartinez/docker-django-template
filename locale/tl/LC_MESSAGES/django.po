@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-17 03:23+0000\n"
+"POT-Creation-Date: 2021-04-19 00:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,100 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: project/settings.py:126
+#: project/settings.py:127
 msgid "English"
 msgstr "Ingles"
 
-#: project/settings.py:127
+#: project/settings.py:128
 msgid "Tagalog"
 msgstr "Tagalog"
 
-#: sample/templates/sample/index.html:11
-msgid "Example Application"
-msgstr "Halimbawa ng Application"
+#: sample/forms.py:12
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+
+#: sample/forms.py:24
+msgid "Password"
+msgstr ""
+
+#: sample/forms.py:30
+msgid "Password confirmation"
+msgstr ""
+
+#: sample/forms.py:33
+msgid "Enter the same password as before, for verification."
+msgstr ""
+
+#: sample/forms.py:43
+msgid "Email already exists!"
+msgstr ""
+
+#: sample/templates/sample/base.html:53
+msgid "Logout"
+msgstr ""
+
+#: sample/templates/sample/base.html:57 sample/templates/sample/login.html:22
+#: sample/templates/sample/login.html:28
+msgid "Login"
+msgstr ""
+
+#: sample/templates/sample/base.html:60 sample/templates/sample/login.html:6
+#: sample/templates/sample/register.html:16
+#: sample/templates/sample/register.html:22
+msgid "Register"
+msgstr ""
+
+#: sample/templates/sample/protected.html:9
+msgid "You are logged in as"
+msgstr ""
+
+#: sample/templates/sample/registered.html:8
+msgid "Registration Successful!"
+msgstr ""
+
+#: sample/templates/sample/registered.html:9
+msgid "We have sent a verification email to"
+msgstr ""
+
+#: sample/templates/sample/verify-email.html:2
+msgid "Verify your account!"
+msgstr ""
+
+#: sample/templates/sample/verify-email.html:4
+msgid "Use the following link to verify your account:"
+msgstr ""
+
+#: sample/templates/sample/verify-email.html:8
+msgid "Cheers!"
+msgstr ""
+
+#: sample/templates/sample/verify.html:9
+msgid "User Verified!"
+msgstr ""
+
+#: sample/templates/sample/verify.html:10
+msgid "You may now start using Docker+Django Template."
+msgstr ""
+
+#: sample/templates/sample/verify.html:12
+msgid "Invalid token!"
+msgstr ""
+
+#: sample/templates/sample/verify.html:13
+msgid "Sorry but we cannot verify your account."
+msgstr ""
+
+#: sample/utils.py:38
+#, python-brace-format
+msgid ""
+"Verify your account!\n"
+"\n"
+"Use the following link to verify your account: {verification_url}\n"
+"\n"
+"Cheers!\n"
+"Ronie Martinez\n"
+msgstr ""
+
+#: sample/views.py:39
+msgid "User not verified!"
+msgstr ""

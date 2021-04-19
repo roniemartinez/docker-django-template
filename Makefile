@@ -41,6 +41,10 @@ migrations:
 migrate:
 	docker-compose run --rm web bash -c "poetry run python manage.py migrate"
 
+.PHONY: messages
+messages:
+	docker-compose run --rm web bash -c "poetry run python manage.py makemessages -a --no-obsolete"
+
 .PHONY: compilemessages
 compilemessages:
 	docker-compose run --rm web bash -c "poetry run python manage.py compilemessages"
