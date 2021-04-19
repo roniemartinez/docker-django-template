@@ -1,0 +1,15 @@
+@startuml
+
+component Browser
+
+package "Docker" {
+    database PostgreSQL
+    collections "Django App" as Django
+
+    Browser .right.> [nginx]
+    [nginx] ..> Django
+    Django ..> PostgreSQL
+    [cron] .down.> [nginx]
+}
+
+@enduml
