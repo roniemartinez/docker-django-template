@@ -8,15 +8,41 @@ Template repository for a Docker+Django project
 - PostgreSQL database
 - Optional dockerized cron
 
+## Architecture
+
+![Architecture](diagrams/architecture.png)
+
 ## Demo
 
 You can check this template in action using the URL [https://ddt.ron.sh/](https://ddt.ron.sh/)
 
-## Creating a project from this Docker+Django Template
+## Creating a project from Docker+Django Template
 
+1. Fork this project.
+2. Go to settings and convert your fork to a Template Repository, if not yet checked.
 
+![Make Template Repository](screenshots/make-template-repo.png)
+
+3. Create a new project and specify a Repository template to use.
+
+![Create repo with template](screenshots/create-repo-with-template.png)
+
+4. Happy coding!
+
+## Build and run
+
+Note: update the environment variables in `env` folder before running the following commands:
+
+```shell
+cd <project-folder>
+docker-compose build
+docker-compose up  # or "docker-compose up -d" to run in detached mode
+```
+Go to [http://localhost:8081](http://localhost:8081)
 
 ## Installation on a DigitalOcean Droplet and nginx (Optional)
+
+![Demo Architecture](diagrams/demo-architecture.png)
 
 If you don't have a DigitalOcean account yet, create one using my referral [link](https://m.do.co/c/5b9c0bd05e4e).
 
@@ -44,16 +70,6 @@ certbot --nginx -d <domain>
 
 ```shell
 service nginx reload
-```
-
-## Build and run
-
-Note: update the environment variables in `env` folder before running the following commands:
-
-```shell
-cd <project-folder>
-docker-compose build
-docker-compose up  # or "docker-compose up -d" to run in detached mode
 ```
 
 ## Scaling

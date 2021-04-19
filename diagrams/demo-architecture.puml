@@ -1,0 +1,20 @@
+@startuml
+
+component Browser
+
+package "Digital Ocean Droplet" {
+
+    Browser .right.> [system nginx]
+
+    package "Docker" {
+        database PostgreSQL
+        collections "Django App" as Django
+
+        [system nginx] .right.> [nginx]
+        [nginx] ..> Django
+        Django ..> PostgreSQL
+        [cron] .down.> [nginx]
+    }
+}
+
+@enduml
