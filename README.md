@@ -65,8 +65,7 @@ certbot --nginx -d <domain>
 	}
 ```
 
-4. Clone your project that was created using Docker+Django Template or you can create a non-git package (up to you).
-5. Reload nginx:
+4. Reload nginx:
 
 ```shell
 service nginx reload
