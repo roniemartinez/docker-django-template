@@ -97,7 +97,7 @@ Use the `Makefile` included for running different development tasks:
 5. `make migrations` - generate migration scripts, if applicable.
 6. `make migrate` - run migrations, if applicable.
 7. `make superuser` - create superuser.
-10. `make cachetable` - create cachetable.
+8. `make cachetable` - create cachetable.
 
 ## Author
 
