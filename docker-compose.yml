@@ -25,10 +25,10 @@ services:
       - /bin/sh
       - -c
       - |
-        poetry run python manage.py compilemessages
-        poetry run python manage.py migrate
-        poetry run python manage.py createcachetable
-        poetry run python manage.py collectstatic --noinput
+        python manage.py compilemessages
+        python manage.py migrate
+        python manage.py createcachetable
+        python manage.py collectstatic --noinput
         bash runserver.sh
     volumes:
       - .:/code
