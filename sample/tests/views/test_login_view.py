@@ -19,7 +19,6 @@ class LoginViewTestCase(TestCase):
     def test_post(self) -> None:
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
-        user.save()
         user.extension.verified = True
         user.save()
 

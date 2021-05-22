@@ -12,7 +12,6 @@ class RegisteredViewTestCase(TestCase):
     def test_get(self) -> None:
         user = get_user_model().objects.create(username="username", email="user@sample.ron.sh")
         user.set_password("password")
-        user.save()
         user.extension.verified = True
         user.save()
 
