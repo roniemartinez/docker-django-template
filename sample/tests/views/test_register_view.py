@@ -53,7 +53,7 @@ class RegisterViewTestCase(TestCase):
             user = get_user_model().objects.get(username="username")
             self.assertRedirects(
                 response,
-                reverse("sample:registered", kwargs={"uuid": user.user_extension.uuid}),
+                reverse("sample:registered", kwargs={"uuid": user.extension.uuid}),
                 status_code=HTTPStatus.FOUND,
                 target_status_code=HTTPStatus.OK,
                 fetch_redirect_response=True,

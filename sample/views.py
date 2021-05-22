@@ -4,6 +4,7 @@ from typing import Any, Dict
 
 from django import http
 from django.contrib import auth
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView as AuthLoginView
 from django.core.cache import cache
@@ -17,7 +18,6 @@ from django.views import View
 from django.views.generic import CreateView, TemplateView
 
 from sample.forms import RegisterForm
-from sample.models import UserExtension
 from sample.utils import get_main_url, send_verification_email
 
 
@@ -34,8 +34,7 @@ class LoginView(AuthLoginView):
 
     def form_valid(self, form: AuthenticationForm) -> http.HttpResponseRedirect:
         user = form.get_user()
-        user_extension, _ = UserExtension.objects.get_or_create(user=user)
-        if form.is_valid() and not (user_extension.verified or user.is_staff):
+        if form.is_valid() and not (user.extension.verified or user.is_staff):
             form.errors[NON_FIELD_ERRORS] = form.error_class([gettext("User not verified!")])
             return render(self.request, self.template_name, context={"form": form})
         return super(LoginView, self).form_valid(form)
@@ -47,14 +46,12 @@ class RegisterView(CreateView):
     template_name = "sample/register.html"
 
     def get_success_url(self) -> str:
-        user_extension, _ = UserExtension.objects.get_or_create(user=self.object)
-        return reverse("sample:registered", kwargs={"uuid": user_extension.uuid})
+        return reverse("sample:registered", kwargs={"uuid": self.object.extension.uuid})
 
     def form_valid(self, form: RegisterForm) -> http.HttpResponseRedirect:
         response = super(RegisterView, self).form_valid(form)
-        user_extension, _ = UserExtension.objects.get_or_create(user=self.object)
         main_url = get_main_url(self.request)
-        send_verification_email(main_url, user_extension.uuid, self.object.email)
+        send_verification_email(main_url, self.object.extension.uuid, self.object.email)
         return response
 
 
@@ -63,7 +60,7 @@ class RegisteredView(TemplateView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context_data = super(RegisteredView, self).get_context_data(**kwargs)
-        context_data["email"] = UserExtension.objects.get(uuid=kwargs.get("uuid")).user.email
+        context_data["email"] = get_user_model().objects.get(extension__uuid=kwargs.get("uuid")).email
         return context_data
 
 
@@ -76,9 +73,11 @@ class VerifyAccountView(TemplateView):
         key = f"verify-token-{verification_token}"
         uuid = cache.get(key)
         if uuid:
-            context_data["verified"] = True
+            from sample.models import UserExtension
+
             UserExtension.objects.filter(uuid=uuid).update(verified=True)
             cache.delete(key)
+            context_data["verified"] = True
         return context_data
 
 

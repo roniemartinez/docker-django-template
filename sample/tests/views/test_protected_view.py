@@ -5,8 +5,6 @@ from django.http import HttpResponse
 from django.test import TestCase
 from django.urls import reverse
 
-from sample.models import UserExtension
-
 
 class ProtectedViewTestCase(TestCase):
     databases: List[str] = ["default"]
@@ -19,8 +17,8 @@ class ProtectedViewTestCase(TestCase):
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
         user.save()
-        user_extension = UserExtension(user=user, verified=True)
-        user_extension.save()
+        user.extension.verified = True
+        user.save()
         self.client.login(username="username", password="password")
         response: HttpResponse = self.client.get(reverse("sample:protected"))
         self.assertContains(response, "You are logged in as username")

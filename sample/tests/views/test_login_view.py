@@ -6,8 +6,6 @@ from django.http import HttpResponse
 from django.test import TestCase
 from django.urls import reverse
 
-from sample.models import UserExtension
-
 
 class LoginViewTestCase(TestCase):
     databases: List[str] = ["default"]
@@ -22,8 +20,8 @@ class LoginViewTestCase(TestCase):
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
         user.save()
-        user_extension = UserExtension(user=user, verified=True)
-        user_extension.save()
+        user.extension.verified = True
+        user.save()
 
         response: HttpResponse = self.client.post(
             reverse("sample:login"), {"username": "username", "password": "password"}, follow=True
@@ -40,8 +38,6 @@ class LoginViewTestCase(TestCase):
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
         user.save()
-        user_extension = UserExtension(user=user, verified=False)
-        user_extension.save()
 
         response: HttpResponse = self.client.post(
             reverse("sample:login"), {"username": "username", "password": "password"}, follow=True
@@ -55,8 +51,6 @@ class LoginViewTestCase(TestCase):
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
         user.save()
-        user_extension = UserExtension(user=user, verified=False)
-        user_extension.save()
 
         response: HttpResponse = self.client.post(
             reverse("sample:login"), {"username": "username", "password": "incorrect"}, follow=True
