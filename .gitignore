@@ -145,3 +145,6 @@ static/*
 
 # Postgres
 data/
+
+# pyenv
+.python-version

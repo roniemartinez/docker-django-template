@@ -98,8 +98,8 @@ Ronie Martinez
         self.assertContains(response, "This field is required.")
 
     def test_post_duplicate_email(self) -> None:
-        user = get_user_model().objects.create(username="username", email="user@sample.ron.sh")
-        user.save()
+        get_user_model().objects.create(username="username", email="user@sample.ron.sh")
+
         response: HttpResponse = self.client.post(
             reverse("sample:register"),
             {

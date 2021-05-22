@@ -16,7 +16,6 @@ class ProtectedViewTestCase(TestCase):
     def test_get_logged_in(self) -> None:
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
-        user.save()
         user.extension.verified = True
         user.save()
         self.client.login(username="username", password="password")
