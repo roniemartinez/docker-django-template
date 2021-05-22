@@ -5,7 +5,6 @@ from urllib.parse import urljoin
 from django import http
 from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.models import User
 from django.core import mail
 from django.core.cache import cache
 from django.core.handlers.wsgi import WSGIRequest
@@ -16,11 +15,8 @@ from django.utils.translation import gettext_lazy
 VERIFICATION_TOKEN_EXPIRY = 86_400  # 24 hours
 
 
-def is_verified_user_or_staff(user: User) -> bool:
-    from sample.models import UserExtension
-
-    user_extension, _ = UserExtension.objects.get_or_create(user=user)
-    return user_extension.verified or user.is_staff
+def is_verified_user_or_staff(user: settings.AUTH_USER_MODEL) -> bool:
+    return user.extension.verified or user.is_staff
 
 
 def verified_login_required(view_func: Callable) -> http.HttpResponseRedirect:

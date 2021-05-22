@@ -7,8 +7,6 @@ from django.http import HttpResponse
 from django.test import TestCase
 from django.urls import reverse
 
-from sample.models import UserExtension
-
 
 class VerifyAccountViewTestCase(TestCase):
     databases: List[str] = ["default"]
@@ -17,29 +15,27 @@ class VerifyAccountViewTestCase(TestCase):
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
         user.save()
-        user_extension = UserExtension(user=user, verified=False)
-        user_extension.save()
 
         token = secrets.token_urlsafe()
-        cache.set(f"verify-token-{token}", user_extension.uuid, 5)
+        cache.set(f"verify-token-{token}", user.extension.uuid, 5)
 
         response: HttpResponse = self.client.get(reverse("sample:verify", kwargs={"token": token}))
+        user.refresh_from_db()
 
         self.assertContains(response, "User Verified!")
         self.assertContains(response, "You may now start using Docker+Django Template.")
-        self.assertTrue(UserExtension.objects.get(user=user).verified)
+        self.assertTrue(user.extension.verified)
 
     def test_get_not_exist(self) -> None:
         user = get_user_model().objects.create(username="username")
         user.set_password("password")
         user.save()
-        user_extension = UserExtension(user=user, verified=False)
-        user_extension.save()
 
         token = secrets.token_urlsafe()
 
         response: HttpResponse = self.client.get(reverse("sample:verify", kwargs={"token": token}))
+        user.refresh_from_db()
 
         self.assertContains(response, "Invalid token!")
         self.assertContains(response, "Sorry but we cannot verify your account.")
-        self.assertFalse(UserExtension.objects.get(user=user).verified)
+        self.assertFalse(user.extension.verified)
