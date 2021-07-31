@@ -1,23 +1,28 @@
-from typing import List
+from http import HTTPStatus
 
+import pytest
 from django.contrib.auth import get_user_model
-from django.http import HttpResponse
-from django.test import TestCase
+from django.test import Client
 from django.urls import reverse
+from pytest_django.asserts import assertContains, assertRedirects
 
 
-class ProtectedViewTestCase(TestCase):
-    databases: List[str] = ["default"]
+@pytest.mark.django_db
+def test_protected_page(client: Client) -> None:
+    user = get_user_model().objects.create(username="username")
 
-    def test_get(self) -> None:
-        response: HttpResponse = self.client.get(reverse("sample:protected"))
-        self.assertRedirects(response, expected_url=reverse("sample:login") + "?next=%2Fprotected%2F")
+    client.force_login(user)
+    response = client.get(path=reverse("sample:protected"))
+    assert response.status_code == HTTPStatus.OK
+    assertContains(response, "You are logged in as username")
 
-    def test_get_logged_in(self) -> None:
-        user = get_user_model().objects.create(username="username")
-        user.set_password("password")
-        user.extension.verified = True
-        user.save()
-        self.client.login(username="username", password="password")
-        response: HttpResponse = self.client.get(reverse("sample:protected"))
-        self.assertContains(response, "You are logged in as username")
+
+@pytest.mark.django_db
+def test_protected_page_not_logged_in(client: Client) -> None:
+    response = client.get(path=reverse("sample:protected"))
+    assertRedirects(
+        response,
+        expected_url=reverse("account_login") + "?next=%2Fprotected%2F",
+        status_code=HTTPStatus.FOUND,
+        target_status_code=HTTPStatus.OK,
+    )

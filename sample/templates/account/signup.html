@@ -1,0 +1,36 @@
+{% extends "sample/base.html" %}
+{% load i18n %}
+
+{% block styles %}
+    <style>
+        .table-borderless td, .table-borderless th {
+            border: none;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    <div class="container-fluid">
+        <div class="row px-5" style="margin-top: 50px; margin-bottom: 50px;">
+            <div class="col-lg-12 col-sm-12 justify-content-center align-self-center">
+                <h2>{% translate "Register" %}</h2>
+
+                <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>
+                    .{% endblocktrans %}</p>
+
+                <form method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    <table class="table table-borderless">
+                        {{ form.as_table }}
+                    </table>
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button type="submit" class="btn btn-info" role="button">{% translate "Register" %}</button>
+                </form>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}

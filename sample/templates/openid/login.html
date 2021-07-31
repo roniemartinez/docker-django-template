@@ -1,12 +1,6 @@
 {% extends "sample/base.html" %}
 {% load i18n %}
 
-{% block navbar %}
-    <li>
-        <a class="nav-link" href="{% url "sample:register" %}">{% translate "Register" %}</a>
-    </li>
-{% endblock %}
-
 {% block styles %}
     <style>
         .table-borderless td, .table-borderless th {
@@ -17,15 +11,16 @@
 
 {% block container %}
     <div class="container-fluid">
-        <div class="row px-5" style="height: calc(100vh - 54px);">
+        <div class="row px-5" style="height: calc(100vh - 56px);">
             <div class="col-lg-5 col-sm-12 justify-content-center align-self-center">
-                <h2>{% translate "Login" %}</h2>
-                <form method="post">
+                <h2>{% translate "OpenID Sign In" %}</h2>
+
+                <form method="post" action="{% url 'openid_login' %}">
                     {% csrf_token %}
                     <table class="table table-borderless">
                         {{ form.as_table }}
                     </table>
-                    <button type="submit" class="btn btn-info" role="button">{% translate "Login" %}</button>
+                    <button type="submit" class="btn btn-info" role="button">{% translate "Sign In" %}</button>
                 </form>
             </div>
             <div class="col">

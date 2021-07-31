@@ -27,7 +27,6 @@ services:
       - |
         python manage.py compilemessages
         python manage.py migrate
-        python manage.py createcachetable
         python manage.py collectstatic --noinput
         bash runserver.sh
     volumes:

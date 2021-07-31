@@ -1,12 +1,15 @@
 from http import HTTPStatus
-from typing import Any, List
+from typing import Any
 
+import pytest
 from django.core import exceptions
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import Http404, HttpResponse
-from django.test import TestCase, override_settings
+from django.test import Client
 from django.urls import include, path
 from django.views import View
+from pytest_django.asserts import assertContains
+from pytest_django.fixtures import SettingsWrapper
 
 from sample import views
 
@@ -27,6 +30,7 @@ class ErrorView(View):
 
 urlpatterns = [
     path("", include("sample.urls")),
+    path("accounts/", include("allauth.urls")),
     path("error/<int:code>/", ErrorView.as_view(), name="error"),
 ]
 
@@ -36,33 +40,32 @@ handler404 = views.Handle404View.as_view()
 handler500 = views.handle500_view
 
 
-@override_settings(ROOT_URLCONF=__name__)
-class JobCreateViewTestCase(TestCase):
-    databases: List[str] = ["default"]
+@pytest.mark.urls(__name__)
+def test_400(settings: SettingsWrapper, client: Client) -> None:
+    settings.DEBUG = False
+    response: HttpResponse = client.get(path="/error/400/")
+    assertContains(response, "400 Bad Request", status_code=HTTPStatus.BAD_REQUEST)
+    assertContains(response, "Bad request syntax or unsupported method", status_code=HTTPStatus.BAD_REQUEST)
 
-    def test_get_400(self) -> None:
-        with self.settings(DEBUG=False):
-            response: HttpResponse = self.client.get("/error/400/")
-            self.assertContains(response, "400 Bad Request", status_code=HTTPStatus.BAD_REQUEST)
-            self.assertContains(
-                response, "Bad request syntax or unsupported method", status_code=HTTPStatus.BAD_REQUEST
-            )
 
-    def test_get_403(self) -> None:
-        with self.settings(DEBUG=False):
-            response: HttpResponse = self.client.get("/error/403/")
-            self.assertContains(response, "403 Forbidden", status_code=HTTPStatus.FORBIDDEN)
-            self.assertContains(
-                response, "Request forbidden -- authorization will not help", status_code=HTTPStatus.FORBIDDEN
-            )
+@pytest.mark.urls(__name__)
+def test_403(settings: SettingsWrapper, client: Client) -> None:
+    settings.DEBUG = False
+    response: HttpResponse = client.get(path="/error/403/")
+    assertContains(response, "403 Forbidden", status_code=HTTPStatus.FORBIDDEN)
+    assertContains(response, "Request forbidden -- authorization will not help", status_code=HTTPStatus.FORBIDDEN)
 
-    def test_get_404(self) -> None:
-        with self.settings(DEBUG=False):
-            response: HttpResponse = self.client.get("/error/404/")
-            self.assertContains(response, "404 Not Found", status_code=HTTPStatus.NOT_FOUND)
-            self.assertContains(response, "Nothing matches the given URI", status_code=HTTPStatus.NOT_FOUND)
 
-    def test_get_500(self) -> None:
-        response: HttpResponse = self.client.get("/error/500/")
-        self.assertContains(response, "500 Internal Server Error", status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
-        self.assertContains(response, "Server got itself in trouble", status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
+@pytest.mark.urls(__name__)
+def test_404(settings: SettingsWrapper, client: Client) -> None:
+    settings.DEBUG = False
+    response: HttpResponse = client.get(path="/error/404/")
+    assertContains(response, "404 Not Found", status_code=HTTPStatus.NOT_FOUND)
+    assertContains(response, "Nothing matches the given URI", status_code=HTTPStatus.NOT_FOUND)
+
+
+@pytest.mark.urls(__name__)
+def test_500(client: Client) -> None:
+    response: HttpResponse = client.get(path="/error/500/")
+    assertContains(response, "500 Internal Server Error", status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
+    assertContains(response, "Server got itself in trouble", status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
