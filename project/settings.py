@@ -191,6 +191,3 @@ ACCOUNT_FORMS = {"signup": "sample.forms.RegisterForm"}
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
 ACCOUNT_USER_DISPLAY = "sample.utils.display_username"
-
-# temporary email backend
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
