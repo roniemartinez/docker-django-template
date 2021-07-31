@@ -4,9 +4,9 @@
 {% block container %}
     <div class="container-fluid">
         <div class="row px-5" style="height: calc(100vh - 56px);">
-            <div class="col-lg-12 col-sm-12 justify-content-center align-self-center">
-                <h1>{{ error.value }} {{ error.phrase }}</h1>
-                <p>{{ error.description }}</p>
+            <div class="col-lg-5 col-sm-12 justify-content-center align-self-center">
+                <h2>{% translate "Account Inactive" %}</h2>
+                <p>{% translate "This account is inactive." %}</p>
             </div>
             <div class="col">
             </div>

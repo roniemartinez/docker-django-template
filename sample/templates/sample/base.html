@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha256-T/zFmO5s/0aSwc6ics2KLxlfbewyRz6UNw1s3Ppf5gE=" crossorigin="anonymous">
 
     {% block title %}
         <title>Docker+Django Template</title>
@@ -48,16 +48,16 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             {% block navbar %}
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     <li>
-                        <a class="nav-link" href="{% url "sample:logout" %}">{% translate "Logout" %}</a>
+                        <a class="nav-link" href="{% url "account_logout" %}">{% translate "Logout" %}</a>
                     </li>
                 {% else %}
                     <li>
-                        <a class="nav-link" href="{% url "sample:login" %}">{% translate "Login" %}</a>
+                        <a class="nav-link" href="{% url "account_login" %}">{% translate "Login" %}</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{% url "sample:register" %}">{% translate "Register" %}</a>
+                        <a class="nav-link" href="{% url "account_signup" %}">{% translate "Register" %}</a>
                     </li>
                 {% endif %}
             {% endblock %}
@@ -68,15 +68,12 @@
 {% block container %}
 {% endblock %}
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>
 
 {% block scripts %}
 {% endblock %}

@@ -3,18 +3,18 @@ install:
 	pip3 install -U poetry
 	poetry install
 
-.PHONY: style
-style:
-	poetry run autoflake --remove-all-unused-imports --in-place -r .
-	poetry run isort --atomic .
-	poetry run black .
-	poetry run flake8 .
-
 .PHONY: format
-format: style
+format:
+	poetry run autoflake --remove-all-unused-imports --in-place -r --exclude __init__.py .
+	poetry run isort .
+	poetry run black .
 
-.PHONY: type
-type:
+.PHONY: lint
+lint:
+	poetry run autoflake --remove-all-unused-imports --in-place -r --exclude __init__.py --check .
+	poetry run isort --check-only .
+	poetry run black --check .
+	poetry run pflake8 .
 	poetry run mypy .
 
 .PHONY: test
@@ -25,8 +25,8 @@ test:
 build:
 	docker-compose build
 
-.PHONY: up
-up:
+.PHONY: start
+start:
 	docker-compose up
 
 .PHONY: superuser
@@ -48,7 +48,3 @@ messages:
 .PHONY: compilemessages
 compilemessages:
 	docker-compose run --rm web bash -c "python manage.py compilemessages"
-
-.PHONY: cachetable
-cachetable:
-	docker-compose run --rm web bash -c "python manage.py createcachetable"

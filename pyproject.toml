@@ -1,25 +1,28 @@
 [tool.poetry]
 name = "docker-django-template"
-version = "1.0.4"
+version = "2.0.0"
 description = "Template repository for a Docker+Django project"
 authors = ["Ronie Martinez <ronmarti18@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-Django = "^3.2.5"
+python = "^3.9"
 daphne = "^3.0.1"
+Django = "^3.2.5"
+django-allauth = "^0.45.0"
 psycopg2-binary = "^2.9.1"
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.4"
 black = "^21.7b0"
+coverage = { extras = ["toml"], version = "^5.5" }
 flake8 = "^3.8.4"
 isort = "^5.9.3"
 mypy = "^0.910"
-coverage = "^5.3.1"
-pytest-django = "^4.4.0"
+pytest = "^6.2.4"
 pytest-cov = "^2.12.1"
+pytest-django = "^4.4.0"
+pyproject-flake8 = "^0.0.1-alpha.2"
 
 [tool.isort]
 line_length = 120
@@ -28,44 +31,46 @@ force_grid_wrap = 0
 use_parentheses = true
 include_trailing_comma = true
 ensure_newline_before_comments = true
+atomic = true
 
 [tool.black]
 line-length = 120
-target-version = ['py38']
+target-version = ['py39']
 include = '\.pyi?$'
-exclude = '''
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-  )/
-  | foo.py           # also separately exclude a file named foo.py in
-                     # the root of the project
-)
-'''
+extend-exclude = """
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+^/foo.py
+"""
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "project.settings"
 addopts = """\
     -vv \
     --cov=sample \
-    --cov-config pyproject.toml \
-    --cov-report term-missing \
-    --cov-report html\
+    --cov-report=term-missing \
+    --cov-report=html \
     """
 django_debug_mode = true
 
 [tool.coverage.run]
 source = ["sample"]
 omit = ["*/test*", "*/apps.py", "*/migrations/*"]
+
+[tool.mypy]
+disallow_untyped_defs = true
+exclude = "sample/migrations"
+
+[[tool.mypy.overrides]]
+module = [
+    "allauth.*",
+    "django.*",
+    "psycopg2.*",
+]
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 120
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

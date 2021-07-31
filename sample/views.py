@@ -1,84 +1,23 @@
-from gettext import gettext
 from http import HTTPStatus
-from typing import Any, Dict
+from typing import Any
 
 from django import http
-from django.contrib import auth
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import LoginView as AuthLoginView
-from django.core.cache import cache
-from django.core.exceptions import NON_FIELD_ERRORS
+from django.contrib.auth.decorators import login_required
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.template.response import TemplateResponse
-from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import CreateView, TemplateView
-
-from sample.forms import RegisterForm
-from sample.utils import get_main_url, send_verification_email
+from django.views.generic import TemplateView
 
 
 class LandingView(TemplateView):
     template_name = "sample/landing.html"
 
 
+@method_decorator(login_required, name="dispatch")
 class ProtectedView(TemplateView):
     template_name = "sample/protected.html"
-
-
-class LoginView(AuthLoginView):
-    template_name = "sample/login.html"
-
-    def form_valid(self, form: AuthenticationForm) -> http.HttpResponseRedirect:
-        user = form.get_user()
-        if form.is_valid() and not (user.extension.verified or user.is_staff):
-            form.errors[NON_FIELD_ERRORS] = form.error_class([gettext("User not verified!")])
-            return render(self.request, self.template_name, context={"form": form})
-        return super(LoginView, self).form_valid(form)
-
-
-class RegisterView(CreateView):
-    model = auth.get_user_model()
-    form_class = RegisterForm
-    template_name = "sample/register.html"
-
-    def get_success_url(self) -> str:
-        return reverse("sample:registered", kwargs={"uuid": self.object.extension.uuid})
-
-    def form_valid(self, form: RegisterForm) -> http.HttpResponseRedirect:
-        response = super(RegisterView, self).form_valid(form)
-        main_url = get_main_url(self.request)
-        send_verification_email(main_url, self.object.extension.uuid, self.object.email)
-        return response
-
-
-class RegisteredView(TemplateView):
-    template_name = "sample/registered.html"
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        context_data = super(RegisteredView, self).get_context_data(**kwargs)
-        context_data["email"] = get_user_model().objects.get(extension__uuid=kwargs.get("uuid")).email
-        return context_data
-
-
-class VerifyAccountView(TemplateView):
-    template_name = "sample/verify.html"
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        context_data = super(VerifyAccountView, self).get_context_data(**kwargs)
-        verification_token = kwargs.get("token")
-        key = f"verify-token-{verification_token}"
-        uuid = cache.get(key)
-        if uuid:
-            from sample.models import UserExtension
-
-            UserExtension.objects.filter(uuid=uuid).update(verified=True)
-            cache.delete(key)
-            context_data["verified"] = True
-        return context_data
 
 
 class CleanUpView(View):

@@ -1,0 +1,21 @@
+{% extends "sample/base.html" %}
+{% load i18n %}
+
+{% block container %}
+    <div class="container-fluid">
+        <div class="row px-5" style="height: calc(100vh - 56px);">
+            <div class="col-lg-5 col-sm-12 justify-content-center align-self-center">
+                <h3>{% translate "Are you sure you want to logout?" %}</h3>
+                <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button type="submit" class="btn btn-info" role="button">{% translate "Logout" %}</button>
+                </form>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}
