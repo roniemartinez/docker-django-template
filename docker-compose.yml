@@ -32,7 +32,7 @@ services:
     volumes:
       - .:/code
     expose:
-      - 8000
+      - 8081
     env_file:
       - env/app.env
       - env/database.env
@@ -54,17 +54,3 @@ services:
       - ./media:/media
     depends_on:
       - web
-
-  cron:
-    build:
-      context: .
-      dockerfile: docker/cron.dockerfile
-    container_name: docker-django-cron
-    command: crond -f -d 8
-    volumes:
-      - "./cron/cron:/etc/crontabs/root:z"
-    restart: unless-stopped
-    depends_on:
-      - nginx
-    links:
-      - nginx

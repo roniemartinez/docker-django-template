@@ -13,7 +13,6 @@ package "Digital Ocean Droplet" {
         [system nginx] .right.> [nginx]
         [nginx] ..> Django
         Django ..> PostgreSQL
-        [cron] .down.> [nginx]
     }
 }
 

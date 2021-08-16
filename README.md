@@ -6,7 +6,6 @@ Template repository for a Docker+Django project
 - Scalable Django web app with login/registration and initial Bootstrap 4 template
 - Nginx for load balancing traffic to the Django web apps when scaled
 - PostgreSQL database
-- Optional dockerized cron
 
 ## Architecture
 
