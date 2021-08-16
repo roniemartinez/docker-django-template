@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "docker-django-template"
-version = "2.0.1"
+version = "2.0.2"
 description = "Template repository for a Docker+Django project"
 authors = ["Ronie Martinez <ronmarti18@gmail.com>"]
 license = "MIT"
@@ -47,6 +47,7 @@ extend-exclude = """
 DJANGO_SETTINGS_MODULE = "project.settings"
 addopts = """\
     -vv \
+    -x \
     --cov=sample \
     --cov-report=term-missing \
     --cov-report=html \

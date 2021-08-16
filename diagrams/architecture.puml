@@ -9,7 +9,6 @@ package "Docker" {
     Browser .right.> [nginx]
     [nginx] ..> Django
     Django ..> PostgreSQL
-    [cron] .down.> [nginx]
 }
 
 @enduml

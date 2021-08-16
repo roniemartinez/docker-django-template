@@ -2,28 +2,10 @@ from http import HTTPStatus
 from typing import Any
 
 from django import http
-from django.contrib.auth.decorators import login_required
 from django.core.handlers.wsgi import WSGIRequest
-from django.http import HttpResponse
 from django.template.response import TemplateResponse
-from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import TemplateView
-
-
-class LandingView(TemplateView):
-    template_name = "sample/landing.html"
-
-
-@method_decorator(login_required, name="dispatch")
-class ProtectedView(TemplateView):
-    template_name = "sample/protected.html"
-
-
-class CleanUpView(View):
-    def get(self, request: WSGIRequest) -> HttpResponse:
-        # do something
-        return HttpResponse(status=HTTPStatus.NO_CONTENT)
 
 
 class HandleErrorView(TemplateView):
