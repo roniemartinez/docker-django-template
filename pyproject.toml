@@ -20,7 +20,7 @@ flake8 = "^3.8.4"
 isort = "^5.9.3"
 mypy = "^0.910"
 pytest = "^6.2.5"
-pytest-cov = "^2.12.1"
+pytest-cov = "^3.0.0"
 pytest-django = "^4.4.0"
 pyproject-flake8 = "^0.0.1-alpha.2"
 
