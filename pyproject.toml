@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "docker-django-template"
-version = "2.0.4"
+version = "2.1.0"
 description = "Template repository for a Docker+Django project"
 authors = ["Ronie Martinez <ronmarti18@gmail.com>"]
 license = "MIT"
@@ -16,7 +16,6 @@ psycopg2-binary = "^2.9.3"
 autoflake = "^1.4"
 black = "^22.1"
 coverage = { extras = ["toml"], version = "^6.3" }
-flake8 = "^4.0.1"
 isort = "^5.10.1"
 mypy = "^0.931"
 pytest = "^7.0.1"

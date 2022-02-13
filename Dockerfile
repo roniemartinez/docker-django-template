@@ -1,4 +1,4 @@
-FROM python:3.9-slim-buster
+FROM python:3.10-slim-buster
 LABEL maintainer="ronmarti18@gmail.com"
 
 RUN apt update && apt install -y build-essential gettext python3-dev
