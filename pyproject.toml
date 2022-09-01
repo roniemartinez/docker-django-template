@@ -21,7 +21,7 @@ mypy = "^0.971"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 pytest-django = "^4.5.2"
-pyproject-flake8 = "^0.0.1a4"
+pyproject-flake8 = "^0.0.1a5"
 
 [tool.isort]
 line_length = 120
