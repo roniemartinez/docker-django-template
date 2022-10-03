@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "docker-django-template"
-version = "2.1.1"
+version = "2.2.0"
 description = "Template repository for a Docker+Django project"
 authors = ["Ronie Martinez <ronmarti18@gmail.com>"]
 license = "MIT"
@@ -8,14 +8,15 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.9"
 daphne = "^3.0.1"
-Django = "^3.2.14"
+Django = "^4.1.1"
 django-allauth = "^0.51.0"
 psycopg2-binary = "^2.9.3"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autoflake = "^1.6"
 black = "^22.8"
 coverage = { extras = ["toml"], version = "^6.5" }
+diagrams = "^0.22.0"
 isort = "^5.10.1"
 mypy = "^0.981"
 pytest = "^7.1.3"
@@ -64,6 +65,7 @@ exclude = "sample/migrations"
 [[tool.mypy.overrides]]
 module = [
     "allauth.*",
+    "diagrams.*",
     "django.*",
     "psycopg2.*",
 ]

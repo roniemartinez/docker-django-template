@@ -9,7 +9,12 @@ Template repository for a Docker+Django project
 
 ## Architecture
 
-![Architecture](diagrams/architecture.png)
+![Architecture](./diagrams/architecture.png)
+
+## Requirements
+
+- Python 3.10 (optional, development should be done in the provided Docker environment)
+- Docker Desktop (or Docker Compose)
 
 ## Demo
 
@@ -90,12 +95,18 @@ poetry run python manage.py makemessages -l <language_code>
 Use the `Makefile` included for running different development tasks:
 
 1. `make install` - installs the packages needed for development.
-2. `make format` - runs `autoflake`, `isort` and `black` for fixing coding style.
-3. `make lint` - runs `autoflake`, `isort`, `black`, `flake8` and `mypy` checks.
-4. `make test` - run unit tests.
-5. `make migrations` - generate migration scripts, if applicable.
-6. `make migrate` - run migrations, if applicable.
-7. `make superuser` - create superuser.
+2. `make build` - build application.
+3. `make start` - start application.
+4. `make format` - runs `autoflake`, `isort` and `black` for fixing coding style.
+5. `make lint` - runs `autoflake`, `isort`, `black`, `flake8` and `mypy` checks.
+6. `make test` - run unit tests.
+7. `make migrations` - generate migration scripts, if applicable.
+8. `make migrate` - run migrations, if applicable.
+9. `make superuser` - create superuser.
+10. `make messages` - update messages.
+11. `make compilemessages` - compile messages.
+12. `make dumpdata` - backup data.
+13. `make loaddata` - load data from backup.
 
 ## Author
 
