@@ -1,6 +1,6 @@
 .PHONY: install
 install:
-	pip3 install -U poetry
+	pip3 install -U pip setuptools poetry
 	poetry install
 
 .PHONY: format
@@ -43,8 +43,16 @@ migrate:
 
 .PHONY: messages
 messages:
-	docker-compose run --rm web bash -c "python manage.py makemessages -a --no-obsolete"
+	docker-compose run --rm web bash -c "python manage.py makemessages -a --no-obsolete -v 3 --ignore 'htmlcov/*' --ignore '*migrations*'"
 
 .PHONY: compilemessages
 compilemessages:
 	docker-compose run --rm web bash -c "python manage.py compilemessages"
+
+.PHONY: dumpdata
+dumpdata:
+	docker-compose run --rm web bash -c "python manage.py dumpdata --format json --indent 2 -o backups/dump.json -v 3"
+
+.PHONY: loaddata
+loaddata:
+	docker-compose run --rm web bash -c "python manage.py loaddata -e auth.permission -v 3"

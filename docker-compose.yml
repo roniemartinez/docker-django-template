@@ -1,17 +1,20 @@
 version: "3.8"
 
+volumes:
+  database:
+
 services:
   database:
-    image: library/postgres:13-alpine
+    image: library/postgres:14-alpine
     container_name: docker-django-database
-    restart: always
+    restart: on-failure
     env_file:
       - env/database.env
     expose:
       - 5432
     volumes:
       - ./database/scripts:/docker-entrypoint-initdb.d
-      - ./data/postgres:/var/lib/postgresql/data
+      - database:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]  # TODO: find a way to dynamically get the username
       interval: 10s
