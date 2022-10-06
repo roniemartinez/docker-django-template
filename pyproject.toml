@@ -10,7 +10,7 @@ python = "^3.9"
 daphne = "^3.0.1"
 Django = "^4.1.2"
 django-allauth = "^0.51.0"
-psycopg2-binary = "^2.9.3"
+psycopg2-binary = "^2.9.4"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^1.6"
