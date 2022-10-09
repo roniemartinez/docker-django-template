@@ -190,19 +190,19 @@ test = ["hypothesis (>=1.11.4,!=3.79.2)", "iso8601", "pretend", "pytest (>=6.2.0
 
 [[package]]
 name = "daphne"
-version = "3.0.2"
+version = "4.0.0"
 description = "Django ASGI (HTTP/WebSocket) server"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
-asgiref = ">=3.2.10,<4"
-autobahn = ">=0.18"
-twisted = {version = ">=18.7", extras = ["tls"]}
+asgiref = ">=3.5.2,<4"
+autobahn = ">=22.4.2"
+twisted = {version = ">=22.4", extras = ["tls"]}
 
 [package.extras]
-tests = ["hypothesis (==4.23)", "pytest (>=3.10,<4.0)", "pytest-asyncio (>=0.8,<1.0)"]
+tests = ["django", "hypothesis", "pytest", "pytest-asyncio"]
 
 [[package]]
 name = "defusedxml"
@@ -832,7 +832,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "f9ede71894b120b5d6f7191a384ef97f060a215fb56dcb1f0e5c28845d4f0d02"
+content-hash = "ed08398d7bb3482b8a9235f90a6f4db5d7f7f6cd5abac13c4401a22ed43c3b11"
 
 [metadata.files]
 asgiref = [
@@ -1046,8 +1046,8 @@ cryptography = [
     {file = "cryptography-38.0.1.tar.gz", hash = "sha256:1db3d807a14931fa317f96435695d9ec386be7b84b618cc61cfa5d08b0ae33d7"},
 ]
 daphne = [
-    {file = "daphne-3.0.2-py3-none-any.whl", hash = "sha256:a9af943c79717bc52fe64a3c236ae5d3adccc8b5be19c881b442d2c3db233393"},
-    {file = "daphne-3.0.2.tar.gz", hash = "sha256:76ffae916ba3aa66b46996c14fa713e46004788167a4873d647544e750e0e99f"},
+    {file = "daphne-4.0.0-py3-none-any.whl", hash = "sha256:a288ece46012b6b719c37150be67c69ebfca0793a8521bf821533bad983179b2"},
+    {file = "daphne-4.0.0.tar.gz", hash = "sha256:cce9afc8f49a4f15d4270b8cfb0e0fe811b770a5cc795474e97e4da287497666"},
 ]
 defusedxml = [
     {file = "defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61"},
