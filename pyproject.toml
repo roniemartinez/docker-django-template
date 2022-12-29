@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.9"
 daphne = "^4.0.0"
 Django = "^4.1.4"
-django-allauth = "^0.51.0"
+django-allauth = "^0.52.0"
 psycopg2-binary = "^2.9.5"
 
 [tool.poetry.group.dev.dependencies]
