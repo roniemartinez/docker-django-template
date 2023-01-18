@@ -13,7 +13,7 @@ django-allauth = "^0.52.0"
 psycopg2-binary = "^2.9.5"
 
 [tool.poetry.group.dev.dependencies]
-autoflake = "^1.6"
+autoflake = "^1.7"
 black = "^22.12"
 coverage = { extras = ["toml"], version = "^6.5" }
 diagrams = "^0.22.0"
