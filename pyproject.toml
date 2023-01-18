@@ -17,7 +17,7 @@ autoflake = "^1.6"
 black = "^22.8"
 coverage = { extras = ["toml"], version = "^6.5" }
 diagrams = "^0.22.0"
-isort = "^5.10.1"
+isort = "^5.11.4"
 mypy = "^0.981"
 pytest = "^7.2.1"
 pytest-cov = "^4.0.0"
