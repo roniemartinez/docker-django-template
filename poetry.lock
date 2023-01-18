@@ -64,18 +64,18 @@ xbr = ["base58 (>=2.1.0)", "cbor2 (>=5.2.0)", "click (>=8.1.2)", "ecdsa (>=0.16.
 
 [[package]]
 name = "autoflake"
-version = "1.6.1"
+version = "1.7.8"
 description = "Removes unused imports and unused variables"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "autoflake-1.6.1-py2.py3-none-any.whl", hash = "sha256:dfef4c851fb07e6111f9115d3e7c8c52d8564cbf71c12ade2d8b8a2a7b8bd176"},
-    {file = "autoflake-1.6.1.tar.gz", hash = "sha256:72bce741144ef6db26005d47dba242c1fd6a91ea53f7f4c5a90ad4b051e394c2"},
+    {file = "autoflake-1.7.8-py3-none-any.whl", hash = "sha256:46373ef69b6714f5064c923bb28bd797c4f8a9497f557d87fc36665c6d956b39"},
+    {file = "autoflake-1.7.8.tar.gz", hash = "sha256:e7e46372dee46fa1c97acf310d99d922b63d369718a270809d7c278d34a194cf"},
 ]
 
 [package.dependencies]
-pyflakes = ">=1.1.0"
+pyflakes = ">=1.1.0,<3"
 tomli = {version = ">=2.0.1", markers = "python_version < \"3.11\""}
 
 [[package]]
@@ -1431,4 +1431,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "ec2c152a66f596b1e6ff7dec2f7ae2c9ad7b6ae398164284e92fe7b953c4717f"
+content-hash = "b2ad34a0d7d5c503eb0f99dad5a2d13d70029b4664ba7e4933cc1c1b0fe3ca37"
