@@ -14,7 +14,7 @@ psycopg2-binary = "^2.9.5"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^2.0"
-black = "^23.1"
+black = "^23.3"
 coverage = { extras = ["toml"], version = "^7.2" }
 diagrams = "^0.23.3"
 isort = "^5.12.0"
