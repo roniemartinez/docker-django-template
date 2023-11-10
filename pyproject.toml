@@ -18,7 +18,7 @@ black = "^23.11"
 coverage = { extras = ["toml"], version = "^7.3" }
 diagrams = "^0.23.4"
 isort = "^5.12.0"
-mypy = "^1.6"
+mypy = "^1.7"
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
 pytest-django = "^4.7.0"
