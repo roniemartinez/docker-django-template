@@ -11,9 +11,13 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "⬆️ "
