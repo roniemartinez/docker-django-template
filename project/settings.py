@@ -175,14 +175,6 @@ LOGIN_REDIRECT_URL = reverse_lazy("sample:protected")
 
 SITE_ID = int(os.getenv("SITE_ID", "1"))
 
-# https://docs.djangoproject.com/en/3.2/ref/settings/#migration-modules
-
-MIGRATION_MODULES = {
-    "account": "sample.migrations.allauth.account",
-    "socialaccount": "sample.migrations.allauth.socialaccount",
-    "sites": "sample.migrations.sites",
-}
-
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 
 ACCOUNT_LOGOUT_REDIRECT_URL = reverse_lazy("account_login")
