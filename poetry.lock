@@ -476,13 +476,13 @@ test-randomorder = ["pytest-randomly"]
 
 [[package]]
 name = "daphne"
-version = "4.1.0"
+version = "4.1.1"
 description = "Django ASGI (HTTP/WebSocket) server"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "daphne-4.1.0-py3-none-any.whl", hash = "sha256:7228cd6a3ca5a9b11c9a1c1c0414dab1bfb4ddc55ff234b545db8d71f6c24938"},
-    {file = "daphne-4.1.0.tar.gz", hash = "sha256:882fab39d0b90c6b2709b38116c95f660b6cf236600115dd7c13161fb98b3448"},
+    {file = "daphne-4.1.1-py3-none-any.whl", hash = "sha256:2f9d7469b41fb3a06b5a0a94022b6ee5b850544df1337565470e457034974e2c"},
+    {file = "daphne-4.1.1.tar.gz", hash = "sha256:e390eb50b5258430821cceeb5421336a10591ba8f068bda3af3479bf51b7d559"},
 ]
 
 [package.dependencies]
@@ -1507,4 +1507,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "aa74c5ef2be00b0a11e947118d7447f6022b1febdaf0d36f3f375dcb72ab03d7"
+content-hash = "ad508b70ad898ce2c4b58bca63e07cc66871e9245ac766b98eb35db89530384e"
