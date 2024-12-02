@@ -2,13 +2,13 @@
 
 [[package]]
 name = "asgiref"
-version = "3.7.2"
+version = "3.8.1"
 description = "ASGI specs, helper code, and adapters"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "asgiref-3.7.2-py3-none-any.whl", hash = "sha256:89b2ef2247e3b562a16eef663bc0e2e703ec6468e2fa8a5cd61cd449786d4f6e"},
-    {file = "asgiref-3.7.2.tar.gz", hash = "sha256:9e0ce3aa93a819ba5b45120216b23878cf6e8525eb3848653452b4192b92afed"},
+    {file = "asgiref-3.8.1-py3-none-any.whl", hash = "sha256:3e1e3ecc849832fe52ccf2cb6686b7a55f82bb1d6aee72a58826471390335e47"},
+    {file = "asgiref-3.8.1.tar.gz", hash = "sha256:c343bd80a0bec947a9860adb4c432ffa7db769836c64238fc34bdc3fec84d590"},
 ]
 
 [package.dependencies]
@@ -441,16 +441,17 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 name = "django-allauth"
-version = "64.2.1"
+version = "65.3.0"
 description = "Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "django_allauth-64.2.1.tar.gz", hash = "sha256:54bf0af8dc5c334254dd56f9069447c19b9b623110a095b2a0dcb82a414e1055"},
+    {file = "django_allauth-65.3.0.tar.gz", hash = "sha256:92e0242724af03458b05b88c5fa798b01112ab22a86d873a8a9fd8f0ec57bbbf"},
 ]
 
 [package.dependencies]
-Django = ">=4.2"
+asgiref = ">=3.8.1"
+Django = ">=4.2.16"
 
 [package.extras]
 mfa = ["fido2 (>=1.1.2)", "qrcode (>=7.0.0)"]
@@ -1295,4 +1296,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "76d477d103de02a66b19f21e8138b41246461799a8d7591114058bcbd397828c"
+content-hash = "a03af40ad433a07f28647bafb295fcf526d3cdb9796b80a788e5f1aebdd445c1"
