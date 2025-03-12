@@ -16,7 +16,7 @@ psycopg2-binary = "^2.9.10"
 autoflake = "^2.3"
 black = "^24.10"
 coverage = { extras = ["toml"], version = "^7.6" }
-diagrams = "^0.24.1"
+diagrams = "^0.24.4"
 isort = "^6.0.1"
 mypy = "^1.14"
 pytest = "^8.3.4"
