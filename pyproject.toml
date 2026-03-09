@@ -19,7 +19,7 @@ coverage = { extras = ["toml"], version = "^7.10" }
 diagrams = "^0.24.1"
 isort = "^6.0.1"
 mypy = "^1.19"
-pytest = "^8.4.1"
+pytest = "^8.4.2"
 pytest-cov = "^7.0.0"
 pytest-django = "^4.11.1"
 pyproject-flake8 = "^7.0.0"
